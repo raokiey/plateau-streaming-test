@@ -32,6 +32,14 @@
       Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5N2UyMjcwOS00MDY1LTQxYjEtYjZjMy00YTU0ZTg5MmViYWQiLCJpZCI6ODAzMDYsImlhdCI6MTY0Mjc0ODI2MX0.dkwAL1CcljUV7NA7fDbhXXnmyZQU_c-G5zRx8PtEcxE";
       // 地形データの指定（PLATEAU-Terrainを使用）
       var viewer = new Cesium.Viewer("cesiumContainer", {
+        baseLayerPicker: false,
+        timeline : false,
+        animation : false,
+        homeButton: false,
+        vrButton: true,
+        geocoder:true,
+        sceneModePicker:false,
+        navigationHelpButton:true,
         terrainProvider: new Cesium.CesiumTerrainProvider({
           url: Cesium.IonResource.fromAssetId(770371)
         })
