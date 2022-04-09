@@ -1,171 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Cesium</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <!-- Use correct character set. -->
+    <meta charset="utf-8" />
+    <!-- Tell IE to use the latest, best version. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <title>Hello World!</title>
+    <script src="./Build/Cesium/Cesium.js"></script>
     <style>
-      body {
-        font-family: sans-serif;
+      @import url(./Build/Cesium/Widgets/widgets.css);
+      html,
+      body,
+      #cesiumContainer {
+        width: 100%;
+        height: 100%;
         margin: 0;
         padding: 0;
-      }
-
-      h2 {
-        margin-top: 0;
-      }
-
-      table,
-      p {
-        margin-left: 25px;
-      }
-
-      td {
-        padding-bottom: 15px;
-        vertical-align: top;
-      }
-
-      td:first-child {
-        padding-right: 15px;
-      }
-
-      .section:nth-child(even) {
-        background-color: #fff;
-      }
-
-      .section {
-        border: none;
-        padding: 20px 40px;
-      }
-
-      .section > * {
-        max-width: 800px;
+        overflow: hidden;
       }
     </style>
   </head>
-  <body style="background-color: #f5f7f9">
-    <div>
-      <div class="section">
-        <a href="https://cesium.com/cesiumjs/"
-          ><img
-            src="./Apps/Sandcastle/images/Cesium_Logo_Color_Overlay.png"
-            style="width: 400px"
-        /></a>
-      </div>
-      <div class="section">
-        <h2>Cesium ion</h2>
-        <p>
-          Cesium ion is your hub for discovering 3D content and tiling your own
-          data for streaming. CesiumJS and ion work together to enable you to
-          build world class 3D mapping applications.
-        </p>
-        <p>
-          <a href="https://cesium.com/ion/signup/"
-            >Sign up for a free account</a
-          >
-          to get your access token required for using ion's Bing Maps global
-          imagery and Cesium World Terrain assets.
-        </p>
-      </div>
-      <div class="section">
-        <h2>Local links</h2>
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <a href="Build/Documentation/index.html">Documentation</a>
-              </td>
-              <td>The complete API documentation and reference.</td>
-            </tr>
-            <tr>
-              <td><a href="Apps/HelloWorld.html">Hello World</a></td>
-              <td>The simplest possible Cesium application.</td>
-            </tr>
-            <tr>
-              <td><a href="Apps/CesiumViewer/index.html">Cesium Viewer</a></td>
-              <td>
-                A sample Cesium reference application which allows you to browse
-                the globe and select from a variety of imagery and terrain
-                layers as well as load CZML, GeoJSON, and other formats
-                supported by Cesium.
-              </td>
-            </tr>
-            <tr>
-              <td><a href="Apps/Sandcastle/index.html">Sandcastle</a></td>
-              <td>
-                Cesium's live code editor and example gallery. Browse examples
-                highlighting features of the Cesium API and edit and run them
-                all in your web browser. Cesium applications created in
-                Sandcastle can be saved and downloaded.
-              </td>
-            </tr>
-            <tr>
-              <td><a href="Specs/SpecRunner.html">Run tests</a></td>
-              <td>Run Cesium's full suite of unit tests</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="section">
-        <h2>External links</h2>
-        <table>
-          <tbody>
-            <tr>
-              <td><a href="https://cesium.com">Cesium</a></td>
-              <td>Learn about the Cesium team and the Cesium ion platform</td>
-            </tr>
-            <tr>
-              <td><a href="https://cesium.com/blog/">Cesium Blog</a></td>
-              <td>
-                Follow project news, developer tips, and posts about Cesium's
-                innovative technology
-              </td>
-            </tr>
-            <tr>
-              <td><a href="https://cesium.com/learn/">Tutorials</a></td>
-              <td>Step-by-step guides for learning to use CesiumJS</td>
-            </tr>
-            <tr>
-              <td>
-                <a href="https://community.cesium.com/">Community Forum</a>
-              </td>
-              <td>Questions and feedback welcome from all skill levels</td>
-            </tr>
-            <tr>
-              <td><a href="https://github.com/CesiumGS/cesium">GitHub</a></td>
-              <td>The official CesiumJS GitHub repository</td>
-            </tr>
-            <tr>
-              <td>
-                <a href="https://cesium.com/blog/categories/user-stories/"
-                  >User Stories</a
-                >
-              </td>
-              <td>Demos and information about projects using CesiumJS</td>
-            </tr>
-            <tr>
-              <td><a href="http://webglreport.com/">WebGL Report</a></td>
-              <td>
-                Provides technical information about WebGL capabilities
-                supported by your browser
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div
-          style="padding-top: 300px; font-size: 10pt; vertical-align: bottom"
-        >
-          &copy; 2011-2021 CesiumJS Contributors
-        </div>
-      </div>
-    </div>
-    <script type="text/javascript">
-      if (window.location.protocol === "file:") {
-        document.body.innerHTML = "";
-        document.write("<p><b>This file must be hosted in a web server.</br>");
-        document.write(
-          'Need help?  Ask on our <a href="https://community.cesium.com/">Community Forum</a>.</b></p>'
-        );
-      }
-    </script>
+  <body>
+    <div id="cesiumContainer"></div>
+    <script>
+      // Cesium Ionの読み込み指定
+      Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5N2UyMjcwOS00MDY1LTQxYjEtYjZjMy00YTU0ZTg5MmViYWQiLCJpZCI6ODAzMDYsImlhdCI6MTY0Mjc0ODI2MX0.dkwAL1CcljUV7NA7fDbhXXnmyZQU_c-G5zRx8PtEcxE";
+      // Terrainの指定（EGM96、国土数値情報5m標高から生成した全国の地形モデル、5m標高データが無い場所は10m標高で補完している）
+      var viewer = new Cesium.Viewer("cesiumContainer", {
+        terrainProvider: new Cesium.CesiumTerrainProvider({
+          url: Cesium.IonResource.fromAssetId(770371)
+        })
+      });
+
+      // PLATEAU-Orthoの参照
+      var imageProvider = new Cesium.UrlTemplateImageryProvider({ url: 'https://gic-plateau.s3.ap-northeast-1.amazonaws.com/2020/ortho/tiles/{z}/{x}/{y}.png', maximumLevel : 19});
+      var current_image = viewer.scene.imageryLayers.addImageryProvider(imageProvider); 
+
+      // 東京都港区の3D Tiles形式のテクスチャ付き建物モデル（低解像度）
+      var your_3d_tiles = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
+        url : 'https://plateau.geospatial.jp/main/data/3d-tiles/bldg/13100_tokyo/13103_minato-ku/low_resolution/tileset.json'
+      }));
+
+      // 東京都江東区の3D Tiles形式のテクスチャ付き建物モデル（低解像度）
+      var your_3d_tiles = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
+        url : 'https://plateau.geospatial.jp/main/data/3d-tiles/bldg/13100_tokyo/13108_koto-ku/low_resolution/tileset.json'
+      }));
+
+      // 東京都中央区の3D Tiles形式のテクスチャ付き建物モデル（低解像度）
+      var your_3d_tiles = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
+        url : 'https://plateau.geospatial.jp/main/data/3d-tiles/bldg/13100_tokyo/13102_chuo-ku/low_resolution/tileset.json'
+      }));
+
+      // 東京都23区の3D Tiles形式の橋梁モデル
+      var your_3d_tiles = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
+        url : 'https://plateau.geospatial.jp/main/data/3d-tiles/brid/13100_tokyo/tileset.json'
+      }));
+
+      // カメラの初期位置の指定
+      viewer.camera.setView({
+        destination : Cesium.Cartesian3.fromDegrees(139.76, 35.68, 5000.0)
+      });
+      </script>
   </body>
 </html>
